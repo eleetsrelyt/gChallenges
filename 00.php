@@ -1,22 +1,39 @@
 <?php
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-$tmp  = "temp/smarty";
-require "$path/Smarty/Smarty.class.php";
-
-$smarty = new Smarty();
-$smarty->template_dir = "$path/$tmp/templates";
-$smarty->compile_dir  = "$path/$tmp/templates_c";
-$smarty->cache_dir    = "$path/$tmp/chache";
-$smarty->config_dir   = "$path/$tmp/configs"; 
-
 $vs = ['a','e','i','o','u','y'];
 $cs = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'];
 
-echo rand(0,20);
+//echo rand(0,20);
+//echo $vs[rand(0,count($vs)-1)];
+//echo $cs[rand(0,count($cs)-1)];
+$name = '';
 
 
-$smarty->assign('name', $name);
-$smarty->assign('title',"00 - Name Generator");
-$smarty->display("00.tpl");
+$len = rand(3,8);
+//echo "<br/>" . $len. "<br/>";
+
+if (isset($_POST['GENERATE'])) {
+	for ( $i = 0 ; $i <= $len ; $i++) {
+		$j = rand(1,3);
+		//echo $j . "<br/>";
+		if ($j == 1) {
+			$name = $name . $vs[rand(0,count($vs)-1)];
+		}
+		else {
+			$name = $name . $cs[rand(0,count($cs)-1)];
+		}
+	}
+}
+
+
+echo <<<_END
+<html><head></head>
+<body>
+<pre>
+	<input type="submit" value="GENERATE">
+		$name
+</pre></body></html>
+_END;
+
+
 ?>

@@ -1,3 +1,5 @@
+## BMI Calculator
+
 print("       BMI Calculator       ")
 print("----------------------------")
 height_in = float(input("Enter your height in inches: "))
